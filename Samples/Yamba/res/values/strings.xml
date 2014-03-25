@@ -2,7 +2,11 @@
 <resources>
 
     <string name="app_name">Yamba</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+	
+	<!-- preferences -->
+    <string name="titleUsername">Username</string>
+	<string name="summaryUsername">Please enter your username.</string>
+	<string name="titlePasword">Password</string>
+   	<string name="summaryPasword">Please enter your password.</string>        
 </resources>
