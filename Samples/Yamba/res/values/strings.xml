@@ -11,5 +11,7 @@
    	<!-- menu items -->
    	<string name="action_settings">Settings</string>
 	<string name="action_start">Service start</string>
-	<string name="action_stop">Service stop</string>   	
+	<string name="action_stop">Service stop</string>   
+	<string name="action_refresh">Service refresh</string>   		
+	
 </resources>

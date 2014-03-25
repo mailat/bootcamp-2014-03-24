@@ -1,16 +1,22 @@
 package com.intel.yamba;
 
+import java.util.List;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.marakana.android.yamba.clientlib.YambaClient;
+import com.marakana.android.yamba.clientlib.YambaClient.Status;
 
 public class UpdaterService extends Service {
 	
 	private boolean runFlag = false;
 	static final int DELAY = 60000; // 1min ?
 	private UpdaterThread updater;
-
+	private YambaApplication yamba;
+	
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -23,6 +29,7 @@ public class UpdaterService extends Service {
 		
 		//our looper get initialized
 		this.updater = new UpdaterThread();
+		this.yamba = (YambaApplication) getApplication();
 	}
 
 	@Override
@@ -43,7 +50,7 @@ public class UpdaterService extends Service {
 	public void onDestroy() {
 		super.onDestroy();
 		
-		runFlag = false;
+		this.runFlag = false;
 		this.updater.interrupt();
 		this.updater = null;
 		
@@ -67,9 +74,14 @@ public class UpdaterService extends Service {
 			{
 				try
 				{
-					//TODO long running from time to time operation for getting the tweets
-					Log.d("Yamba","I got 10 messages from Yamba.Narakana.Com");
-					
+					//get the tweets from yamba.marakana.com
+					List<Status> timeline = yamba.getTwitter().getTimeline(20);
+							
+					 //parse the values
+					for (Status status : timeline)
+						Log.d("Yamba", status.getUser() + ": " + status.getMessage() +
+								"-" + status.getCreatedAt());
+
 					//sleep for 1 min and wait for another batch of tweets
 					Thread.sleep(DELAY);
 				}

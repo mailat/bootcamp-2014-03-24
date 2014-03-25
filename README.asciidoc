@@ -39,6 +39,3 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 1. create a new layout names fake_prefs_activty.xml
 2. add in the layout 2 TextView-s and 2 EditText
 3. read the values from the EditText and save them using SharedPreferences 
-
-
-- For bonus points: add a ProgressDialog!
