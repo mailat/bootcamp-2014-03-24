@@ -1,8 +1,6 @@
 package com.intel.yamba;
 
 import com.marakana.android.yamba.clientlib.YambaClient;
-import com.marakana.android.yamba.clientlib.YambaClientException;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -48,10 +46,9 @@ public class StatusActivity extends Activity {
 		
 		// we got reference to the EditText and we read the status
 		EditText editText = (EditText) findViewById(R.id.editText);
-		String editTextPost = editText.getText().toString();
 
 		//call the AsyncTask poster to send the text	
-		new PostToTwitter().execute(editTextPost);
+		new PostToTwitter().execute(editText.getText().toString());
 	}
 
 	class PostToTwitter extends AsyncTask<String, Integer, String> {
@@ -62,10 +59,9 @@ public class StatusActivity extends Activity {
 
 			try {
 				// post on Twitter
-				String postText = "test marius";
 				YambaClient client = new YambaClient("marius", "password");
-				client.postStatus(postText);
-				return "Posted ok the text" + postText;
+				client.postStatus(statuses[0]);
+				return "Posted ok the text" + statuses[0];
 			} catch (Throwable e) {
 				e.printStackTrace();
 				Log.d("Yamba", e.getMessage());
