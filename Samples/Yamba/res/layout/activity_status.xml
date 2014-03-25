@@ -4,11 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your tweet"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your tweet"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/countTwitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:text="140"
+            android:textColor="#00ff00"
+            android:textStyle="bold"      
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editText"
@@ -24,6 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Post update"
-        android:onClick="postTwitterUpdate" />
+        android:onClick="postTwitterUpdate"
+         />
+
 
 </LinearLayout>
