@@ -1,14 +1,10 @@
 package com.intel.yamba;
 
-import com.marakana.android.yamba.clientlib.YambaClient;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,23 +12,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class StatusActivity extends Activity implements OnSharedPreferenceChangeListener{
+public class StatusActivity extends Activity {
 
-	private String username = null;
-	private String password = null;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_status);
-		
-		//get the initial values from preferences
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);		
-		username = prefs.getString("username", null);
-		password = prefs.getString("password", null);	
-		
-		//register for the preference changes
-		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
@@ -62,14 +47,9 @@ public class StatusActivity extends Activity implements OnSharedPreferenceChange
 		// we got reference to the EditText and we read the status
 		EditText editText = (EditText) findViewById(R.id.editText);
 
-		//check if we have a username, password; if not redirect to preferences
-		if (username!=null && password!=null)
-		{
-			//call the AsyncTask poster to send the text
-			new PostToTwitter().execute(editText.getText().toString());
-		}
-		else
-			startActivity(new Intent(this, PrefsActivity.class));
+		//call the AsyncTask poster to send the text
+		new PostToTwitter().execute(editText.getText().toString());
+
 	}
 
 	class PostToTwitter extends AsyncTask<String, Integer, String> {
@@ -80,9 +60,9 @@ public class StatusActivity extends Activity implements OnSharedPreferenceChange
 
 			try {
 				// post on Twitter
-				YambaClient client = new YambaClient(username, password);
-				client.postStatus(statuses[0]);
-				return "Posted ok the text" + statuses[0];
+				((YambaApplication) getApplication()).getTwitter().postStatus(statuses[0]);
+	
+				return "Posted the text" + statuses[0];
 			} catch (Throwable e) {
 				e.printStackTrace();
 				Log.d("Yamba", e.getMessage());
@@ -103,12 +83,6 @@ public class StatusActivity extends Activity implements OnSharedPreferenceChange
 
 	}
 
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,String key) {
-		if (key.equals("username"))
-			username = sharedPreferences.getString(key, null);
-		else if (key.equals("password"))
-			password = sharedPreferences.getString(key, null);
-	}
+
 
 }
