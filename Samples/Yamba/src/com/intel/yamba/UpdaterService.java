@@ -1,13 +1,10 @@
 package com.intel.yamba;
 
 import java.util.List;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-
-import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClient.Status;
 
 public class UpdaterService extends Service {

@@ -32,8 +32,7 @@ public class StatusActivity extends Activity {
 		switch (item.getItemId())
 		{
 			case R.id.action_settings:
-				//startActivity(new Intent(this, PrefsActivity.class));
-				startActivity(new Intent(this, FakePrefsActivity.class));
+				startActivity(new Intent(this, PrefsActivity.class));
 				break;
 			case R.id.action_start:
 				startService(new Intent(StatusActivity.this, UpdaterService.class));
