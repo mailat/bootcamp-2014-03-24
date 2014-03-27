@@ -43,3 +43,11 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 == Homework Day 03
 
 - create a broadcast receiver who stops the service in case you are in roaming and start the service once you are back from roaming
+
+== Homework Day 04
+
+Popup a Notification if we got new messages from Yamba.marakana.com. Use the following tips:
+
+- change the table insert to use the Status.id instead of our AUTOINCREMENT values
+- in the UpdaterService use the example from the /Samples/05_Notifications to display a notification with an Icon
+- once the user click on the Notification he should be redirected to the TimelineActivity
