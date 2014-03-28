@@ -51,3 +51,11 @@ Popup a Notification if we got new messages from Yamba.marakana.com. Use the fol
 - change the table insert to use the Status.id instead of our AUTOINCREMENT values
 - in the UpdaterService use the example from the /Samples/05_Notifications to display a notification with an Icon
 - once the user click on the Notification he should be redirected to the TimelineActivity
+
+== Homework Day 05
+
+Style the WeatherApp same to use the following:
+
+- custom app icon
+- in the WeatherActivity use a background color for temperatur: temp < 0 - blue, 0 < temp < 25 - color yellow,  25 < temp - color red
+- in the ForecastActivity use icons to display the weather conditions ( use a free pack of icons from http://goo.gl/ZOahYq ) 
