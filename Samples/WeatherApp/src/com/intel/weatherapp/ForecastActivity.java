@@ -29,7 +29,9 @@ public class ForecastActivity extends ListActivity {
 
         //setup the list activity
 		list = new ArrayList<String>();
-		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, list);
+		//adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, list);
+		adapter = new ArrayAdapter<String>(this, R.layout.complex_row, R.id.labelMaxMin, list);
+
 		setListAdapter(adapter);
 		
         //read the passed value
@@ -81,9 +83,12 @@ public class ForecastActivity extends ListActivity {
 				for (int i = 0; i < jArray.length(); i++) {
 					jObject = jArray.getJSONObject(i);
 
-					list.add(jObject.getString("dt_txt") + " temperature is "
-							+ jObject.getJSONObject("main").getString("temp")
-							+ " Celsius");
+//					list.add(jObject.getString("dt_txt") + " temperature is "
+//							+ jObject.getJSONObject("main").getString("temp")
+//							+ " Celsius");
+					list.add("Temperature: " + jObject.getJSONObject("main").getString("temp"));
+					
+					
 				}
 				adapter.notifyDataSetChanged();
 
