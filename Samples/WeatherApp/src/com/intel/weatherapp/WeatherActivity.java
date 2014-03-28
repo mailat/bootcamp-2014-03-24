@@ -9,9 +9,11 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class WeatherActivity extends Activity {
@@ -81,9 +83,20 @@ public class WeatherActivity extends Activity {
 				jsonObj = jObj.getJSONObject("main");
 				// get temp
 				buffer.append(jsonObj.getString("temp"));
+				
+				int temperature =  new Integer(jsonObj.getString("temp")).intValue();
 
 				weatherText.setText(buffer.toString());
-
+				
+				//temp < 0 - blue, 0 < temp < 25 - color yellow, 25 < temp - color red
+				LinearLayout viewBackground = (LinearLayout) findViewById(R.id.containerWeather);
+				if (temperature <= 0)
+					viewBackground.setBackgroundColor(Color.BLUE);
+				else if (temperature < 25 && temperature > 0)
+					viewBackground.setBackgroundColor(Color.YELLOW);
+				else if (temperature > 25 )
+					viewBackground.setBackgroundColor(Color.RED);
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

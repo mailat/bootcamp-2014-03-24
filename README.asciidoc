@@ -58,4 +58,4 @@ Style the WeatherApp same to use the following:
 
 - custom app icon
 - in the WeatherActivity use a background color for temperatur: temp < 0 - blue, 0 < temp < 25 - color yellow,  25 < temp - color red
-- in the ForecastActivity use icons to display the weather conditions ( use a free pack of icons from http://goo.gl/ZOahYq ) 
+- in the ForecastActivity use icons to display the weather conditions ( use a free pack of icons from http://www.iconspedia.com/pack/weather-vector-icons-3693/ ) 
